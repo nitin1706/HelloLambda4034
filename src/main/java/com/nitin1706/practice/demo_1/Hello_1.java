@@ -21,7 +21,7 @@ public class Hello_1 implements RequestHandler<Object, String> {
     }
     
     public static void insertDataUsingJDBC(String data, Context context) {
-        String DB_URL = "jdbc:mysql://test4034.cdwlcf5rek3j.us-east-1.rds.amazonaws.com/default_db";
+        String DB_URL = "jdbc:mysql://test4034.xxxxxxxxxxxx.us-east-1.rds.amazonaws.com/default_db";
         String USER = "shaktiman";
         String PASS = "gangadhar=Shaktiman";
         
