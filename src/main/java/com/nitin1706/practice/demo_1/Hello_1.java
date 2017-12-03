@@ -1,4 +1,4 @@
-package com.palak4034.practice.demo_1;
+package com.nitin1706.practice.demo_1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,29 +14,20 @@ public class Hello_1 implements RequestHandler<Object, String> {
     @Override
     public String handleRequest(Object input, Context context) {
         context.getLogger().log("Input: " + input + "\n");
-        
         Gson gson = new Gson();
         ButtonData buttonData = gson.fromJson(input.toString(), ButtonData.class);
-        
         insertDataUsingJDBC(buttonData.getClickType()+buttonData.getSerialNumber(), context);
         return buttonData.getClickType();
     }
     
-    public static void insertDataUsingJDBC(String data, Context context)
-    {
-        /*final String DB_URL = "jdbc:mysql://test4034.cdwlcf5rek3j.us-east-1.rds.amazonaws.com/default_db";
-        
-        final String USER = "shaktiman";
-        final String PASS = "gangadhar=Shaktiman";*/
-        
-        final String DB_URL = "jdbc:mysql://palak4034-db.cdwlcf5rek3j.us-east-1.rds.amazonaws.com/CMSC618";
-        final String USER = "palak4034";
-        final String PASS = "palak4034";
+    public static void insertDataUsingJDBC(String data, Context context) {
+        String DB_URL = "jdbc:mysql://test4034.cdwlcf5rek3j.us-east-1.rds.amazonaws.com/default_db";
+        String USER = "shaktiman";
+        String PASS = "gangadhar=Shaktiman";
         
         Connection conn = null;
         Statement stmt = null;
-        try
-        {
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             context.getLogger().log("Connecting to a selected database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -48,37 +39,30 @@ public class Hello_1 implements RequestHandler<Object, String> {
             stmt.executeUpdate(sql1);
             
             System.out.println("Inserted records into the table...");
-
         }
-        catch (SQLException se)
-        {
+        catch (SQLException se) {
             context.getLogger().log("SQLException + 1");
             se.printStackTrace();
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             context.getLogger().log("Exception + 1");
             e.printStackTrace();
         }
         finally
         {
-            try
-            {
+            try {
                 if (stmt != null)
                     conn.close();
             }
-            catch (SQLException se)
-            {
+            catch (SQLException se) {
                 context.getLogger().log("SQL Exception");
                 se.printStackTrace();
             }
-            try
-            {
+            try {
                 if (conn != null)
                     conn.close();
             }
-            catch (SQLException se)
-            {
+            catch (SQLException se) {
                 context.getLogger().log("SQLException + 2");
                 se.printStackTrace();
             }

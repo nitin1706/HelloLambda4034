@@ -1,4 +1,4 @@
-package com.palak4034.practice.demo_1;
+package com.nitin1706.practice.demo_1;
 
 public class ButtonData {
     private String serialNumber;
